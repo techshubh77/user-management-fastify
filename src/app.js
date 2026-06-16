@@ -17,6 +17,8 @@ const app = Fastify({
     disableRequestLogging: false,
 });
 
+app.setErrorHandler(errorHandler);
+
 await app.register(dbPlugin);
 await app.register(corsPlugin);
 await app.register(helmetPlugin);
@@ -35,7 +37,6 @@ app.setNotFoundHandler(async (request, reply) => {
     });
 });
 
-app.setErrorHandler(errorHandler);
 
 export default app;
 

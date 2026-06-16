@@ -15,7 +15,7 @@ const config = {
         port: process.env.DEV_DB_PORT,
         user: process.env.DEV_DB_USER,
         name: process.env.DEV_DB_NAME,
-        pass: process.env.DEV_DB_PASS
+        password: process.env.DEV_DB_PASSWORD
     },
     email: {
         providers: {

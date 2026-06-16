@@ -1,27 +1,25 @@
 import fp from "fastify-plugin";
-import fastifyPostgres from "@fastify/postgres";
 import config from "../config/env.js";
+import db from "../models/index.js"; 
 
-async function dbConnector(fastify, options) {
-    const connectionString = `postgres://${config.db.user}:${config.db.pass}@${config.db.host}:${config.db.port}/${config.db.name}`;
-
-    await fastify.register(fastifyPostgres, {
-        connectionString: connectionString
-    });
-
+async function dbLifecyclePlugin(fastify, options) {
+    
     fastify.addHook("onReady", async () => {
         try {
-            const client = await fastify.pg.connect();
-
+            await db.sequelize.authenticate();
             fastify.log.info(`Database connected successfully to: ${config.db.name} on ${config.db.host}`);
-
-            client.release();
+            
         } catch (error) {
-            fastify.log.error("Database connection failed!");
+            fastify.log.error("Database connection or synchronization failed!");
             fastify.log.error(error);
-            process.exit(1);
+            process.exit(1); 
         }
+    });
+
+    fastify.addHook("onClose", async () => {
+        await db.sequelize.close();
+        fastify.log.info("Database connection closed cleanly.");
     });
 }
 
-export default fp(dbConnector);
+export default fp(dbLifecyclePlugin);
