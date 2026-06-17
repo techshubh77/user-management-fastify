@@ -1,8 +1,7 @@
-import userRoutes from "./userRoutes.js";
+import userRoutes from './userRoutes.js';
 
 export default async function (fastify) {
-
-    await fastify.register(userRoutes, {
-        prefix: "/users"
-    });
+  await fastify.register(userRoutes, {
+    prefix: '/users',
+  });
 }

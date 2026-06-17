@@ -1,4 +1,3 @@
-
 /**
  * Utility to send a standardized success response
  * @param {Object} options - Response options
@@ -8,11 +7,11 @@
  * @param {any} [options.data=null] - Data to send in the response
  */
 export const successResponse = ({ reply, statusCode = 200, message = 'Success', data = null }) => {
-    return reply.status(statusCode).json({
-        status: 'success',
-        message,
-        data
-    });
+  return reply.status(statusCode).send({
+    status: 'success',
+    message,
+    data,
+  });
 };
 
 /**
@@ -24,9 +23,9 @@ export const successResponse = ({ reply, statusCode = 200, message = 'Success', 
  * @param {any} [options.errors=null] - Detailed error info
  */
 export const errorResponse = ({ reply, statusCode = 500, message = 'Error', errors = null }) => {
-    return reply.status(statusCode).json({
-        status: 'error',
-        message,
-        errors
-    });
+  return reply.status(statusCode).send({
+    status: 'error',
+    message,
+    errors,
+  });
 };
