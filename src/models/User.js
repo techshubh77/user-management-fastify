@@ -72,12 +72,6 @@ const defineUser = (sequelize, DataTypes) => {
     }
   );
 
-  User.beforeCreate(async (user) => {
-    if (user.changed('password')) {
-      user.password = await bcrypt.hash(user.password, 10);
-    }
-  });
-
   //  Password hashing
   User.beforeSave(async (user) => {
     if (user.changed('password')) {
@@ -89,7 +83,7 @@ const defineUser = (sequelize, DataTypes) => {
     return bcrypt.compare(password, this.password);
   };
 
-  //  Hide password
+  // Hide password
   User.prototype.toJSON = function () {
     const values = { ...this.get() };
     delete values.password;

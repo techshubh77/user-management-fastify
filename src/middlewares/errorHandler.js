@@ -5,6 +5,7 @@ import STATUS_CODES from '../config/constants.js';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const normalizeError = (error) => {
+  // Our own operational errors (AppError)
   if (error.isOperational || error instanceof AppError) {
     return {
       statusCode: error.statusCode || STATUS_CODES.BAD_REQUEST,
@@ -13,6 +14,17 @@ const normalizeError = (error) => {
     };
   }
 
+  // Fastify native errors (e.g. FST_INVALID_MULTIPART_CONTENT_TYPE, FST_ERR_*)
+  // They have a numeric statusCode but no isOperational flag.
+  if (error.statusCode && error.statusCode < 500) {
+    return {
+      statusCode: error.statusCode,
+      message: error.message,
+      isOperational: true,
+    };
+  }
+
+  // Unknown / programming errors — mask in production
   return {
     statusCode: STATUS_CODES.SERVER_ERROR,
     message: isDevelopment ? error.message : 'Something went wrong',

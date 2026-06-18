@@ -2,7 +2,7 @@ import multipart from '@fastify/multipart';
 import Fastify from 'fastify';
 
 import STATUS_CODES from './config/constants.js';
-import loggerConfig from './config/logger.js';
+import logger from './config/logger.js';
 import errorHandler from './middlewares/errorHandler.js';
 import compressPlugin from './plugins/compress.js';
 import cookiePlugin from './plugins/cookie.js';
@@ -12,8 +12,10 @@ import helmetPlugin from './plugins/helmet.js';
 import rateLimitPlugin from './plugins/rateLimit.js';
 import routes from './routes/index.js';
 
+import './workers/emailWorker.js';
+
 const app = Fastify({
-  logger: loggerConfig,
+  loggerInstance: logger,
   trustProxy: true,
   disableRequestLogging: false,
   forceCloseConnections: true,

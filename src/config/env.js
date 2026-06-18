@@ -11,6 +11,9 @@ const config = {
   jwt_secret: process.env.JWT_SECRET,
   env: process.env.NODE_ENV || 'development',
   allowed_origins: process.env.ALLOWED_ORIGINS,
+  redis_port: process.env.REDIS_PORT,
+  frontend_url: process.env.FRONTEND_URL,
+
   db: {
     host: process.env.DEV_DB_HOST,
     port: process.env.DEV_DB_PORT,
@@ -19,6 +22,7 @@ const config = {
     password: process.env.DEV_DB_PASSWORD,
   },
   email: {
+    from: process.env.EMAIL_FROM || 'noreply@example.com',
     providers: {
       mailtrap: {
         host: process.env.MAILTRAP_HOST,

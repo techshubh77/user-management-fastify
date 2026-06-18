@@ -1,8 +1,10 @@
 import path from 'path';
 
+import pino from 'pino';
+
 const logPath = path.join(process.cwd(), 'application.log');
 
-const loggerConfig = {
+const logger = pino({
   level: 'info',
   transport: {
     targets: [
@@ -28,7 +30,6 @@ const loggerConfig = {
       },
     ],
   },
-};
+});
 
-export default loggerConfig;
-
+export default logger;

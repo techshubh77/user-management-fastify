@@ -1,5 +1,3 @@
-import { execSync } from 'node:child_process';
-
 import app from './app.js';
 import config from './config/env.js';
 
@@ -52,27 +50,10 @@ process.on('SIGINT', () => shutdown('SIGINT RECEIVED'));
 process.on('SIGUSR2', () => shutdown('NODEMON RESTART RECEIVED'));
 
 /**
- * Ensure the port is free before attempting to listen.
- * Kills any orphaned process still holding the port (e.g. lingering
- * pino worker threads from a previous restart).
- */
-const ensurePortFree = (port) => {
-  try {
-    execSync(`fuser -k ${port}/tcp 2>/dev/null`, { stdio: 'ignore' });
-    // Give the OS a moment to release the socket
-    execSync('sleep 0.3');
-    console.log(`Cleared orphaned process on port ${port}`);
-  } catch {
-    // fuser returns non-zero if nothing was on the port - that's fine
-  }
-};
-
-/**
  * Server Start Logic
  */
 const startServer = async () => {
   try {
-    ensurePortFree(PORT);
     await app.listen({ port: PORT, host: '127.0.0.1' });
     app.log.info(`Server running on port ${PORT}`);
     app.log.info(`Environment: ${config.env}`);
@@ -83,4 +64,3 @@ const startServer = async () => {
 };
 
 startServer();
-

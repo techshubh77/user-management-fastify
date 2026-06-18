@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Your Email</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f4f7fa;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .email-wrapper {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+    .header {
+      background-color: #4f46e5;
+      padding: 30px 20px;
+      text-align: center;
+      color: #ffffff;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .content {
+      padding: 40px 30px;
+      color: #333333;
+      line-height: 1.6;
+    }
+    .content h2 {
+      margin-top: 0;
+      font-size: 20px;
+      color: #1f2937;
+    }
+    .content p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #4b5563;
+    }
+    .button-container {
+      text-align: center;
+      margin: 35px 0;
+    }
+    .verify-button {
+      background-color: #4f46e5;
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+    .verify-button:hover {
+      background-color: #4338ca;
+    }
+    .fallback-link {
+      background-color: #f3f4f6;
+      padding: 15px;
+      border-radius: 6px;
+      word-break: break-all;
+      font-size: 14px;
+      color: #6b7280;
+      border: 1px solid #e5e7eb;
+    }
+    .footer {
+      background-color: #f9fafb;
+      padding: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #9ca3af;
+      border-top: 1px solid #f3f4f6;
+    }
+    .token-box {
+      display: inline-block;
+      background-color: #f3f4f6;
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 18px;
+      font-weight: bold;
+      color: #111827;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-wrapper">
+    <div class="header">
+      <h1>Verify Your Email Address</h1>
+    </div>
+    <div class="content">
+      <h2>Hello <%= name %>,</h2>
+      <p>Thank you for signing up! We're excited to have you on board. Before we get started, please verify your email address by clicking the button below.</p>
+
+      <div class="button-container">
+        <a href="<%= verifyLink %>" class="verify-button">Verify Email</a>
+      </div>
+      <p>If the button doesn't work, you can copy and paste the following link into your browser:</p>
+      <div class="fallback-link">
+        <a href="<%= verifyLink %>" style="color: #4f46e5;"><%= verifyLink %></a>
+      </div>
+
+      <p style="margin-top: 30px;">If you did not create an account, no further action is required.</p>
+      <p>Thanks,<br>The Application Team</p>
+    </div>
+    <div class="footer">
+      <p>&copy; <%= new Date().getFullYear() %> Our Application. All rights reserved.</p>
+      <p>This email was sent to <%= email || 'your email' %>.</p>
+    </div>
+  </div>
+</body>
+</html>
