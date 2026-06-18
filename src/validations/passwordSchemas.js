@@ -47,8 +47,7 @@ export const resetPasswordBodySchema = {
         type: 'Password must be a string',
         minLength: 'Password must be at least 8 characters',
         maxLength: 'Password must not exceed 16 characters',
-        pattern:
-          'Password must contain uppercase, lowercase, a number, and a special character',
+        pattern: 'Password must contain uppercase, lowercase, a number, and a special character',
       },
     },
     confirmPassword: {

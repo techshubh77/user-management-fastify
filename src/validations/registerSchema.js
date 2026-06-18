@@ -1,4 +1,3 @@
-
 export const registerBodySchema = {
   type: 'object',
   required: ['name', 'email', 'password', 'confirmPassword'],
@@ -14,7 +13,7 @@ export const registerBodySchema = {
         type: 'Name must be a string',
         minLength: 'Name must be at least 3 characters',
         maxLength: 'Name must not exceed 100 characters',
-        pattern: "Name must only contain letters, spaces, hyphens, or apostrophes",
+        pattern: 'Name must only contain letters, spaces, hyphens, or apostrophes',
       },
     },
 
@@ -38,8 +37,7 @@ export const registerBodySchema = {
         type: 'Password must be a string',
         minLength: 'Password must be at least 8 characters',
         maxLength: 'Password must not exceed 16 characters',
-        pattern:
-          'Password must contain uppercase, lowercase, a number, and a special character',
+        pattern: 'Password must contain uppercase, lowercase, a number, and a special character',
       },
     },
 
@@ -81,9 +79,9 @@ export const registerRouteSchema = {
       201: {
         type: 'object',
         properties: {
-          status:  { type: 'string' },
+          status: { type: 'string' },
           message: { type: 'string' },
-          data:    { type: 'null' },
+          data: { type: 'null' },
         },
       },
     },

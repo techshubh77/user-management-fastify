@@ -2,7 +2,10 @@ import * as AuthController from '../controllers/authController.js';
 import uploadAvatar from '../middlewares/upload.js';
 import { validateBody, validateParams } from '../middlewares/validateBody.js';
 import { registerBodySchema } from '../validations/registerSchema.js';
-import { forgotPasswordBodySchema, resetPasswordBodySchema } from '../validations/passwordSchemas.js';
+import {
+  forgotPasswordBodySchema,
+  resetPasswordBodySchema,
+} from '../validations/passwordSchemas.js';
 import { verifyEmailParamsSchema } from '../validations/verifyEmailSchema.js';
 
 export default async function authRoutes(fastify, _opts) {

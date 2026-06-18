@@ -35,7 +35,7 @@ export const validateBody = (schema) => {
 };
 
 export const validateParams = (schema) => {
-  const validate = ajv.compile(schema); 
+  const validate = ajv.compile(schema);
 
   return async (request, _reply) => {
     const valid = validate(request.params);
