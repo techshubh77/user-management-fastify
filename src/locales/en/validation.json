@@ -1,0 +1,17 @@
+{
+  "failed": "Validation failed.",
+  "any_required": "The :field field is required.",
+  "string_empty": ":field cannot be empty.",
+  "string_min": ":field must be at least :min characters.",
+  "string_max": ":field must not exceed :max characters.",
+  "string_email": "Invalid email format.",
+  "string_pattern_base": ":field has an invalid format.",
+  "object_unknown": "Unknown field provided.",
+  "fields": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "token": "Token"
+  }
+}

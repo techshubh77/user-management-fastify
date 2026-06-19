@@ -1,0 +1,25 @@
+{
+  "auth": {
+    "email_already_registered": "Email is already registered.",
+    "invalid_credentials": "Invalid credentials.",
+    "email_not_verified": "Your email is not verified.",
+    "account_deleted": "This account no longer exists.",
+    "account_blocked": "Your account has been blocked.",
+    "account_under_review": "Your account is under review.",
+    "account_rejected": "Your account application has been rejected.",
+    "passwords_do_not_match": "Passwords do not match.",
+    "invalid_or_expired_token": "Invalid or expired verification token.",
+    "email_already_verified": "Email is already verified.",
+    "user_not_found": "User not found.",
+    "register_success": "Registered successfully! A verification link has been sent to your email.",
+    "login_success": "Logged in successfully.",
+    "forgot_password_success": "If the email exists, a reset link has been sent.",
+    "reset_password_success": "Password has been reset successfully. You can now login.",
+    "verify_email_success": "Email has been successfully verified. You can now login."
+  },
+  "general": {
+    "route_not_found": "The requested route :url was not found.",
+    "unexpected_error": "An unexpected error occurred. Please contact the administrator.",
+    "request_not_multipart": "The request is not multipart. Please send data as multipart/form-data."
+  }
+}

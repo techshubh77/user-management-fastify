@@ -1,10 +1,11 @@
 import AppError from '../utils/appError.js';
 import { errorResponse } from '../utils/response.js';
 import STATUS_CODES from '../config/constants.js';
+import { t } from '../utils/translator.js';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const normalizeError = (error) => {
+const normalizeError = (error, locale) => {
   // Our own operational errors (AppError)
   if (error.isOperational || error instanceof AppError) {
     return {
@@ -15,11 +16,17 @@ const normalizeError = (error) => {
   }
 
   // Fastify native errors (e.g. FST_INVALID_MULTIPART_CONTENT_TYPE, FST_ERR_*)
-  // They have a numeric statusCode but no isOperational flag.
   if (error.statusCode && error.statusCode < 500) {
+    let translatedMessage = error.message;
+
+    // Translate specific Fastify native errors that users might see
+    if (error.code === 'FST_INVALID_MULTIPART_CONTENT_TYPE') {
+      translatedMessage = t(locale, 'general.request_not_multipart');
+    }
+
     return {
       statusCode: error.statusCode,
-      message: error.message,
+      message: translatedMessage,
       isOperational: true,
     };
   }
@@ -27,13 +34,13 @@ const normalizeError = (error) => {
   // Unknown / programming errors — mask in production
   return {
     statusCode: STATUS_CODES.SERVER_ERROR,
-    message: isDevelopment ? error.message : 'Something went wrong',
+    message: isDevelopment ? error.message : t(locale, 'general.unexpected_error'),
     isOperational: false,
   };
 };
 
 const errorHandler = (error, request, reply) => {
-  const normalizedError = normalizeError(error);
+  const normalizedError = normalizeError(error, request.locale || 'en');
 
   request.log.error({
     message: normalizedError.message,

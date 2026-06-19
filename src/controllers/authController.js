@@ -1,25 +1,25 @@
-import authService from '../services/authService.js';
 import STATUS_CODES from '../config/constants.js';
+import config from '../config/env.js';
 import AppError from '../utils/appError.js';
 import { successResponse } from '../utils/response.js';
-import config from '../config/env.js';
+import authService from '../services/authService.js';
+import { t } from '../utils/translator.js';
 
 export const register = async (request, reply) => {
   try {
     // avatar filename is already in body.avatar — set by uploadAvatar preHandler
     const { body } = request;
-
+    const locale = request.locale;
     if (body.password !== body.confirmPassword) {
-      throw new AppError('Passwords do not match.', STATUS_CODES.BAD_REQUEST);
+      throw new AppError(t(locale, 'auth.passwords_do_not_match'), STATUS_CODES.BAD_REQUEST);
     }
 
-    await authService.register(body);
+    await authService.register(body, locale);
 
     return successResponse({
       reply,
       statusCode: STATUS_CODES.CREATED,
-      message:
-        'you are registered successfully!. Verification link is sent to your email. Please verify your email to login.',
+      message: t(locale, 'auth.register_success'),
     });
   } catch (error) {
     request.log.error(`register error: ${error.message}`);
@@ -29,7 +29,8 @@ export const register = async (request, reply) => {
 
 export const login = async (request, reply) => {
   try {
-    const res = await authService.login(request.body);
+    const locale = request.locale;
+    const res = await authService.login(request.body, locale);
 
     reply.setCookie('token', res.token, {
       httpOnly: true,
@@ -41,7 +42,7 @@ export const login = async (request, reply) => {
     return successResponse({
       reply,
       statusCode: STATUS_CODES.OK,
-      message: 'Logged in successfully.',
+      message: t(locale, 'auth.login_success'),
       data: res.user,
     });
   } catch (error) {
@@ -53,13 +54,14 @@ export const login = async (request, reply) => {
 export const forgotPassword = async (request, reply) => {
   try {
     const { email } = request.body;
+    const locale = request.locale;
 
-    await authService.forgotPassword(email);
+    await authService.forgotPassword(email, locale);
 
     return successResponse({
       reply,
       statusCode: STATUS_CODES.OK,
-      message: 'If the email exists, a reset link has been sent.',
+      message: t(locale, 'auth.forgot_password_success'),
     });
   } catch (error) {
     request.log.error(`forgotPassword error: ${error.message}`);
@@ -70,17 +72,17 @@ export const forgotPassword = async (request, reply) => {
 export const resetPassword = async (request, reply) => {
   try {
     const { token, password, confirmPassword } = request.body;
-
+    const locale = request.locale;
     if (password !== confirmPassword) {
-      throw new AppError('Passwords do not match.', STATUS_CODES.BAD_REQUEST);
+      throw new AppError(t(locale, 'auth.passwords_do_not_match'), STATUS_CODES.BAD_REQUEST);
     }
 
-    await authService.resetPassword(token, password);
+    await authService.resetPassword(token, password, locale);
 
     return successResponse({
       reply,
       statusCode: STATUS_CODES.OK,
-      message: 'Password has been reset successfully. You can now login.',
+      message: t(locale, 'auth.reset_password_success'),
     });
   } catch (error) {
     request.log.error(`resetPassword error: ${error.message}`);
@@ -91,13 +93,14 @@ export const resetPassword = async (request, reply) => {
 export const verifyEmail = async (request, reply) => {
   try {
     const { token } = request.params;
+    const locale = request.locale;
 
-    await authService.verifyEmail(token);
+    await authService.verifyEmail(token, locale);
 
     return successResponse({
       reply,
       statusCode: STATUS_CODES.OK,
-      message: 'Email has been successfully verified. You can now login.',
+      message: t(locale, 'auth.verify_email_success'),
     });
   } catch (error) {
     request.log.error(`verifyEmail error: ${error.message}`);

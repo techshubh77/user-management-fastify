@@ -1,0 +1,17 @@
+{
+  "failed": "सत्यापन विफल।",
+  "any_required": ":field फ़ील्ड आवश्यक है।",
+  "string_empty": ":field खाली नहीं हो सकता।",
+  "string_min": ":field कम से कम :min अक्षर का होना चाहिए।",
+  "string_max": ":field अधिकतम :max अक्षर का होना चाहिए।",
+  "string_email": "ईमेल प्रारूप अमान्य है।",
+  "string_pattern_base": ":field का प्रारूप अमान्य है।",
+  "object_unknown": "अज्ञात फ़ील्ड प्रदान किया गया।",
+  "fields": {
+    "name": "नाम",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "confirmPassword": "पासवर्ड की पुष्टि करें",
+    "token": "टोकन"
+  }
+}

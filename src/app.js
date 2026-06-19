@@ -9,8 +9,10 @@ import cookiePlugin from './plugins/cookie.js';
 import corsPlugin from './plugins/cors.js';
 import dbPlugin from './plugins/database.js';
 import helmetPlugin from './plugins/helmet.js';
+import languageDetectorPlugin from './plugins/languageDetector.js';
 import rateLimitPlugin from './plugins/rateLimit.js';
 import routes from './routes/index.js';
+import { t } from './utils/translator.js';
 
 import './workers/emailWorker.js';
 
@@ -29,6 +31,7 @@ app.register(helmetPlugin);
 app.register(cookiePlugin);
 app.register(compressPlugin);
 app.register(rateLimitPlugin);
+app.register(languageDetectorPlugin);
 
 app.register(multipart);
 
@@ -37,9 +40,10 @@ app.register(routes, {
 });
 
 app.setNotFoundHandler(async (request, reply) => {
+  const locale = request.locale || 'en';
   return reply.status(404).send({
     status: 'error',
-    message: 'Route not found!',
+    message: t(locale, 'general.route_not_found', { url: request.url }),
     statusCode: STATUS_CODES.NOT_FOUND,
   });
 });
