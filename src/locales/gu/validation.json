@@ -1,0 +1,19 @@
+{
+  "failed": "માન્યતા નિષ્ફળ ગઈ.",
+  "any_required": ":field ફીલ્ડ જરૂરી છે.",
+  "string_empty": ":field ખાલી હોઈ શકતું નથી.",
+  "string_min": ":field ઓછામાં ઓછા :min અક્ષરોનું હોવું જોઈએ.",
+  "string_max": ":field :max અક્ષરોથી વધુ હોવું જોઈએ નહીં.",
+  "string_email": "અમાન્ય ઈમેલ ફોર્મેટ.",
+  "string_pattern_base": ":field અમાન્ય ફોર્મેટ ધરાવે છે.",
+  "object_unknown": "અજાણ્યું ફીલ્ડ પ્રદાન કરવામાં આવ્યું છે.",
+  "fields": {
+    "name": "નામ",
+    "email": "ઈમેલ",
+    "password": "પાસવર્ડ",
+    "oldPassword": "જૂનો પાસવર્ડ",
+    "newPassword": "નવો પાસવર્ડ",
+    "confirmPassword": "પાસવર્ડની પુષ્ટિ કરો",
+    "token": "ટોકન"
+  }
+}

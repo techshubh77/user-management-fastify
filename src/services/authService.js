@@ -46,8 +46,8 @@ const authService = {
     });
   },
 
-  async login(data, locale) {
-    const { email, password } = data;
+  async login(request, locale, uaResult) {
+    const { email, password } = request.body;
 
     const normalizedEmail = email.trim().toLowerCase();
 
@@ -81,12 +81,30 @@ const authService = {
     const token = jwt.sign({ id: user.id, email: user.email }, config.jwt_secret, {
       expiresIn: '1h',
     });
+
+    let deviceType = 'Desktop';
+    if (uaResult.device.type === 'mobile') {
+      deviceType = 'Mobile';
+    } else if (uaResult.device.type === 'tablet') {
+      deviceType = 'Tablet';
+    } else if (uaResult.device.type) {
+      deviceType = 'Unknown';
+    }
+
+    await db.LoginHistory.create({
+      user_id: user.id,
+      browser: uaResult.browser.name || 'Unknown',
+      os: uaResult.os.name || 'Unknown',
+      device: deviceType,
+      timezone: request.timezone || 'UTC',
+    });
+
     return { user: user.toJSON(), token };
   },
 
   async forgotPassword(email, _locale) {
     const normalizedEmail = email.trim().toLowerCase();
-      
+
     const user = await db.User.findOne({ where: { email: normalizedEmail } });
     if (!user) {
       // Return silently to prevent email enumeration attacks

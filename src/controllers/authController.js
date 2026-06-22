@@ -1,13 +1,14 @@
+import { UAParser } from 'ua-parser-js';
+
 import STATUS_CODES from '../config/constants.js';
 import config from '../config/env.js';
+import authService from '../services/authService.js';
 import AppError from '../utils/appError.js';
 import { successResponse } from '../utils/response.js';
-import authService from '../services/authService.js';
 import { t } from '../utils/translator.js';
 
 export const register = async (request, reply) => {
   try {
-    // avatar filename is already in body.avatar — set by uploadAvatar preHandler
     const { body } = request;
     const locale = request.locale;
     if (body.password !== body.confirmPassword) {
@@ -30,13 +31,17 @@ export const register = async (request, reply) => {
 export const login = async (request, reply) => {
   try {
     const locale = request.locale;
-    const res = await authService.login(request.body, locale);
+    const userAgent = request.headers['user-agent'] || '';
+    const parser = new UAParser(userAgent);
+    const uaResult = parser.getResult();
 
+    const res = await authService.login(request, locale, uaResult);
     reply.setCookie('token', res.token, {
       httpOnly: true,
       secure: config.env === 'production',
       sameSite: 'lax',
       maxAge: 1 * 60 * 60, // 1 hour
+      path: '/',
     });
 
     return successResponse({

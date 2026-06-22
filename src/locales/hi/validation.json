@@ -11,6 +11,8 @@
     "name": "नाम",
     "email": "ईमेल",
     "password": "पासवर्ड",
+    "oldPassword": "पुराना पासवर्ड",
+    "newPassword": "नया पासवर्ड",
     "confirmPassword": "पासवर्ड की पुष्टि करें",
     "token": "टोकन"
   }

@@ -11,6 +11,8 @@
     "name": "Name",
     "email": "Email",
     "password": "Password",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
     "confirmPassword": "Confirm Password",
     "token": "Token"
   }

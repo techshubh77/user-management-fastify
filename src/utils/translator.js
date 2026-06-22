@@ -2,6 +2,8 @@ import enMessages from '../locales/en/messages.json' with { type: 'json' };
 import enValidation from '../locales/en/validation.json' with { type: 'json' };
 import hiMessages from '../locales/hi/messages.json' with { type: 'json' };
 import hiValidation from '../locales/hi/validation.json' with { type: 'json' };
+import guMessages from '../locales/gu/messages.json' with { type: 'json' };
+import guValidation from '../locales/gu/validation.json' with { type: 'json' };
 
 // Build the master dictionary
 //
@@ -19,8 +21,9 @@ import hiValidation from '../locales/hi/validation.json' with { type: 'json' };
 // }
 const en = { validation: enValidation, ...enMessages };
 const hi = { validation: hiValidation, ...hiMessages };
+const gu = { validation: guValidation, ...guMessages };
 
-const messages = { en, hi };
+const messages = { en, hi, gu };
 
 // THE MAIN FUNCTION: t(locale, path, replacements)
 //

@@ -6,7 +6,7 @@ import STATUS_CODES from '../config/constants.js';
 import AppError from '../utils/appError.js';
 import { t } from '../utils/translator.js';
 
-const ajv = new Ajv({ allErrors: true, coerceTypes: false });
+const ajv = new Ajv({ allErrors: true, coerceTypes: false, $data: true });
 ajvErrors(ajv);
 ajvFormats(ajv);
 
@@ -127,7 +127,7 @@ export const validateParams = (schema) => {
 
   return async (request, _reply) => {
     const valid = validate(request.params);
-    
+
     if (!valid) {
       const locale = request.locale;
 

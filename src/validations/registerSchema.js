@@ -61,6 +61,17 @@ export const registerBodySchema = {
     },
   },
 
+  oneOf: [
+    {
+      properties: {
+        confirmPassword: { const: { $data: '1/password' } },
+      },
+      errorMessage: {
+        oneOf: 'Confirm password do not match',
+      },
+    },
+  ],
+
   errorMessage: {
     required: {
       name: 'Name is required',
@@ -69,21 +80,5 @@ export const registerBodySchema = {
       confirmPassword: 'Confirm password is required',
     },
     additionalProperties: 'Unknown field provided',
-  },
-};
-
-export const registerRouteSchema = {
-  schema: {
-    body: registerBodySchema,
-    response: {
-      201: {
-        type: 'object',
-        properties: {
-          status: { type: 'string' },
-          message: { type: 'string' },
-          data: { type: 'null' },
-        },
-      },
-    },
   },
 };

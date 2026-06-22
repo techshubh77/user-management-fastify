@@ -72,6 +72,12 @@ const defineUser = (sequelize, DataTypes) => {
     }
   );
 
+  User.associate = (models) => {
+    User.hasMany(models.LoginHistory, {
+      foreignKey: 'user_id',
+      as: 'loginHistories',
+    });
+  };
   //  Password hashing
   User.beforeSave(async (user) => {
     if (user.changed('password')) {

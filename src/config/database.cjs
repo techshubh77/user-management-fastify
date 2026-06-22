@@ -9,6 +9,7 @@ module.exports = {
     port: process.env.DEV_DB_PORT,
     dialect: process.env.DEV_DB_DIALECT,
     logging: false,
+    timezone: '+00:00',
   },
   production: {
     username: process.env.PROD_DB_USER,
@@ -18,5 +19,6 @@ module.exports = {
     port: process.env.PROD_DB_PORT,
     dialect: process.env.PROD_DB_DIALECT,
     logging: false,
+    timezone: '+00:00',
   },
 };

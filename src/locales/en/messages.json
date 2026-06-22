@@ -17,6 +17,18 @@
     "reset_password_success": "Password has been reset successfully. You can now login.",
     "verify_email_success": "Email has been successfully verified. You can now login."
   },
+  "auth_error": {
+    "unauthorized": "Unauthorized access.",
+    "invalid_token": "Invalid or expired token.",
+    "user_not_found": "User not found."
+  },
+  "profile": {
+    "profile_fetch_success": "Profile details fetched successfully.",
+    "profile_update_success": "Profile updated successfully.",
+    "password_changed_successfully": "Password changed successfully.",
+    "invalid_old_password": "Invalid old password.",
+    "login_history_fetch_success": "Login history retrieved successfully."
+  },
   "general": {
     "route_not_found": "The requested route :url was not found.",
     "unexpected_error": "An unexpected error occurred. Please contact the administrator.",

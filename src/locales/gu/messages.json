@@ -1,0 +1,37 @@
+{
+  "auth": {
+    "email_already_registered": "ઈમેલ પહેલેથી જ નોંધાયેલ છે.",
+    "invalid_credentials": "અમાન્ય ઓળખપત્રો.",
+    "email_not_verified": "તમારું ઈમેલ ચકાસાયેલ નથી.",
+    "account_deleted": "આ એકાઉન્ટ હવે અસ્તિત્વમાં નથી.",
+    "account_blocked": "તમારું એકાઉન્ટ બ્લોક કરવામાં આવ્યું છે.",
+    "account_under_review": "તમારું એકાઉન્ટ સમીક્ષા હેઠળ છે.",
+    "account_rejected": "તમારી એકાઉન્ટ અરજી નકારી કાઢવામાં આવી છે.",
+    "passwords_do_not_match": "પાસવર્ડ મેળ ખાતા નથી.",
+    "invalid_or_expired_token": "અમાન્ય અથવા સમયસીમા સમાપ્ત થયેલ ચકાસણી ટોકન.",
+    "email_already_verified": "ઈમેલ પહેલેથી જ ચકાસાયેલ છે.",
+    "user_not_found": "વપરાશકર્તા મળ્યા નથી.",
+    "register_success": "સફળતાપૂર્વક નોંધણી થઈ! ચકાસણી લિંક તમારા ઈમેલ પર મોકલવામાં આવી છે.",
+    "login_success": "સફળતાપૂર્વક લૉગિન કર્યું.",
+    "forgot_password_success": "જો ઈમેલ અસ્તિત્વમાં હશે, તો રીસેટ લિંક મોકલવામાં આવી છે.",
+    "reset_password_success": "પાસવર્ડ સફળતાપૂર્વક રીસેટ કરવામાં આવ્યો છે. હવે તમે લૉગિન કરી શકો છો.",
+    "verify_email_success": "ઈમેલ સફળતાપૂર્વક ચકાસવામાં આવ્યો છે. હવે તમે લૉગિન કરી શકો છો."
+  },
+  "auth_error": {
+    "unauthorized": "અનધિકૃત પ્રવેશ.",
+    "invalid_token": "અમાન્ય અથવા સમયસીમા સમાપ્ત થયેલ ટોકન.",
+    "user_not_found": "વપરાશકર્તા મળ્યા નથી."
+  },
+  "profile": {
+    "profile_fetch_success": "પ્રોફાઇલ વિગતો સફળતાપૂર્વક મેળવવામાં આવી.",
+    "profile_update_success": "પ્રોફાઇલ સફળતાપૂર્વક અપડેટ કરવામાં આવી.",
+    "password_changed_successfully": "પાસવર્ડ સફળતાપૂર્વક બદલાયો.",
+    "invalid_old_password": "અમાન્ય જૂનો પાસવર્ડ.",
+    "login_history_fetch_success": "લૉગિન ઇતિહાસ સફળતાપૂર્વક મેળવવામાં આવ્યો."
+  },
+  "general": {
+    "route_not_found": "વિનંતી કરેલ રૂટ :url મળ્યો નથી.",
+    "unexpected_error": "અણધારી ભૂલ આવી. કૃપા કરીને વ્યવસ્થાપકનો સંપર્ક કરો.",
+    "request_not_multipart": "વિનંતી મલ્ટિપાર્ટ નથી. કૃપા કરીને મલ્ટિપાર્ટ/ફોર્મ-ડેટા તરીકે ડેટા મોકલો."
+  }
+}

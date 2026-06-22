@@ -17,9 +17,21 @@
     "reset_password_success": "पासवर्ड सफलतापूर्वक रीसेट किया गया। अब आप लॉगिन कर सकते हैं।",
     "verify_email_success": "ईमेल सफलतापूर्वक सत्यापित किया गया। अब आप लॉगिन कर सकते हैं।"
   },
+  "auth_error": {
+    "unauthorized": "अनधिकृत पहुंच।",
+    "invalid_token": "अमान्य या समाप्त टोकन।",
+    "user_not_found": "उपयोगकर्ता नहीं मिला।"
+  },
+  "profile": {
+    "profile_fetch_success": "प्रोफ़ाइल विवरण सफलतापूर्वक प्राप्त किया गया।",
+    "profile_update_success": "प्रोफ़ाइल सफलतापूर्वक अपडेट की गई।",
+    "password_changed_successfully": "पासवर्ड सफलतापूर्वक बदला गया।",
+    "invalid_old_password": "अमान्य पुराना पासवर्ड।",
+    "login_history_fetch_success": "लॉगिन इतिहास सफलतापूर्वक प्राप्त किया गया।"
+  },
   "general": {
     "route_not_found": "अनुरोधित रूट :url नहीं मिला।",
     "unexpected_error": "एक अप्रत्याशित त्रुटि हुई। कृपया व्यवस्थापक से संपर्क करें।",
-    "request_not_multipart": "अनुरोध मल्टीपार्ट नहीं है। कृपया डेटा को multipart/form-data के रूप में भेजें।"
+    "request_not_multipart": "अनुरोध मल्टिपार्ट नहीं है। कृपया डेटा को multipart/form-data के रूप में भेजें।"
   }
 }

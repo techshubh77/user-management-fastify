@@ -1,11 +1,23 @@
 import fp from 'fastify-plugin';
 
-const SUPPORTED_LANGUAGES = ['en', 'hi'];
+const SUPPORTED_LANGUAGES = ['en', 'hi', 'gu'];
 
 const DEFAULT_LANGUAGE = 'en';
 
-async function languageDetectorPlugin(fastify, _options) {
+const isValidTimezone = (timezone, request) => {
+  if (!timezone || typeof timezone !== 'string') {
+    return false;
+  }
+  try {
+    Intl.DateTimeFormat(undefined, { timeZone: timezone });
+    return true;
+  } catch (error) {
+    request.log.error(`Invalid timezone: ${timezone}, ${error.message}`);
+    return false;
+  }
+};
 
+async function languageDetectorPlugin(fastify, _options) {
   // 'preHandler' = runs AFTER parsing body/params but BEFORE the route handler.
   //   - onRequest runs even earlier (before body is parsed).
   //   - preHandler is the right time: request is fully ready, controller hasn't run yet.
@@ -63,6 +75,22 @@ async function languageDetectorPlugin(fastify, _options) {
     request.locale = SUPPORTED_LANGUAGES.includes(cleanedLocale)
       ? cleanedLocale // ✅ Supported language → use it
       : DEFAULT_LANGUAGE; // ❌ Unknown language → fall back to English
+
+    // ── EXTRACT AND VALIDATE TIMEZONE ─────────────────────────────────────────
+    //
+    // We check for the 'x-timezone' header. This is a custom header
+    // recommended for applications needing timezone support.
+    //
+    // Why? Unlike 'Accept-Language', 'x-timezone' is unambiguous.
+    // It removes the complexity of parsing browser preference strings.
+    //
+    // Example: x-timezone: Asia/Kolkata
+    //
+    // The header is passed by your frontend (web/mobile app) or can be
+    // set by reverse proxies if properly configured.
+    // ─────────────────────────────────────────────────────────────────────────
+    const rawTimezone = request.headers['x-timezone'];
+    request.timezone = isValidTimezone(rawTimezone, request) ? rawTimezone : 'UTC'; // Default to UTC if header is missing or invalid
   });
 }
 
