@@ -31,3 +31,7 @@ export const create = async (request, reply) => {
     throw error;
   }
 };
+
+export const update = async (request, reply) => {
+  
+}
