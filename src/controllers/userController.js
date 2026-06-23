@@ -32,6 +32,3 @@ export const create = async (request, reply) => {
   }
 };
 
-export const update = async (request, reply) => {
-  
-}
