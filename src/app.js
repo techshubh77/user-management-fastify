@@ -15,6 +15,9 @@ import routes from './routes/index.js';
 import { t } from './utils/translator.js';
 
 import './workers/emailWorker.js';
+import { startCurrencyCron } from "./workers/currencyWorker.js"
+
+startCurrencyCron();
 
 const app = Fastify({
   loggerInstance: logger,

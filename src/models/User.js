@@ -59,6 +59,12 @@ const defineUser = (sequelize, DataTypes) => {
         defaultValue: true,
       },
 
+      preferred_currency: {
+        type: DataTypes.STRING(3),
+        allowNull: false,
+        defaultValue: 'USD',
+      },
+
       deleted_at: {
         type: DataTypes.DATE,
       },

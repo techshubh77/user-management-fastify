@@ -22,6 +22,12 @@ export const updateProfileSchema = {
         pattern: 'Avatar filename must be a valid image filename',
       },
     },
+    preferred_currency: {
+      type: 'string',
+      errorMessage: {
+        type: 'Preferred currency must be a string',
+      },
+    },
   },
   additionalProperties: false,
   errorMessage: {

@@ -33,5 +33,13 @@
     "route_not_found": "अनुरोधित रूट :url नहीं मिला।",
     "unexpected_error": "एक अप्रत्याशित त्रुटि हुई। कृपया व्यवस्थापक से संपर्क करें।",
     "request_not_multipart": "अनुरोध मल्टिपार्ट नहीं है। कृपया डेटा को multipart/form-data के रूप में भेजें।"
+  },
+  "currency": {
+    "external_api_failed": "बाहरी API से डेटा लाने में विफल।",
+    "fetch_failed": "इस समय विनिमय दरें प्राप्त करने में असमर्थ।",
+    "rate_not_found": "मुद्रा के लिए विनिमय दर नहीं मिली: :currency"
+  },
+  "product": {
+    "fetch_success": "उत्पाद सफलतापूर्वक प्राप्त किए गए।"
   }
 }

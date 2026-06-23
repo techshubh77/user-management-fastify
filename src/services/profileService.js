@@ -11,7 +11,7 @@ const AVATAR_DIR = path.resolve('uploads/avatars');
 
 const profileService = {
   async updateProfile(user, data, _locale) {
-    const { name, avatar } = data;
+    const { name, avatar, preferred_currency } = data;
 
     if (name) {
       user.name = name;
@@ -30,6 +30,10 @@ const profileService = {
         }
       }
       user.avatar = avatar;
+    }
+
+    if (preferred_currency) {
+      user.preferred_currency = preferred_currency;
     }
 
     await user.save();

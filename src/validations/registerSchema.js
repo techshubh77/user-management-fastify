@@ -59,6 +59,13 @@ export const registerBodySchema = {
         pattern: 'Avatar must be a valid image filename',
       },
     },
+
+    preferred_currency: {
+      type: 'string',
+      errorMessage: {
+        type: 'Preferred currency must be a string',
+      },
+    },
   },
 
   oneOf: [

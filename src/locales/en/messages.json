@@ -33,5 +33,13 @@
     "route_not_found": "The requested route :url was not found.",
     "unexpected_error": "An unexpected error occurred. Please contact the administrator.",
     "request_not_multipart": "The request is not multipart. Please send data as multipart/form-data."
+  },
+  "currency": {
+    "external_api_failed": "Failed to fetch from external API.",
+    "fetch_failed": "Unable to fetch exchange rates at this time.",
+    "rate_not_found": "Exchange rate not found for currency: :currency"
+  },
+  "product": {
+    "fetch_success": "Products fetched successfully."
   }
 }

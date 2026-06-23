@@ -13,6 +13,7 @@ const config = {
   allowed_origins: process.env.ALLOWED_ORIGINS,
   redis_port: process.env.REDIS_PORT,
   frontend_url: process.env.FRONTEND_URL,
+  currency_api_key: process.env.CURRENCY_API_KEY,
 
   db: {
     host: process.env.DEV_DB_HOST,

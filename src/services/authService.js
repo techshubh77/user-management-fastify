@@ -11,7 +11,7 @@ import { t } from '../utils/translator.js';
 
 const authService = {
   async register(body, locale) {
-    const { name, email, password, avatar } = body;
+    const { name, email, password, avatar, preferred_currency } = body;
     const normalizedEmail = email.trim().toLowerCase();
 
     const exists_user = await db.User.findOne({ where: { email: normalizedEmail } });
@@ -24,6 +24,7 @@ const authService = {
       email,
       password,
       avatar: avatar || null,
+      preferred_currency: preferred_currency || 'USD',
     });
     const token = crypto.randomBytes(32).toString('hex');
     const expired_at = new Date(Date.now() + 10 * 60 * 1000);
@@ -78,7 +79,7 @@ const authService = {
       throw new AppError(t(locale, 'auth.account_rejected'), STATUS_CODES.FORBIDDEN);
     }
 
-    const token = jwt.sign({ id: user.id, email: user.email }, config.jwt_secret, {
+    const token = jwt.sign({ id: user.id, email: user.email, preferred_currency: user.preferred_currency }, config.jwt_secret, {
       expiresIn: '1h',
     });
 
